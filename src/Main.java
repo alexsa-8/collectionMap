@@ -1,21 +1,24 @@
 import java.util.HashMap;
 import java.util.Map;
-
 public class Main {
+    private static Map<String, Integer> number=new HashMap<>();
+
     public static void main(String[] args) {
-        Map<String, Integer> numberOfDays = new HashMap<>();
-        numberOfDays.put("Июнь", 30); //1
-        numberOfDays.put("Июнль", 31); //2
-        numberOfDays.put("Август", 31); //3
-        Collection avgust = new Collection("Август", 31); //4
-        System.out.println(numberOfDays.values());
+        number.put("Июнь", 30); //1
+        number.put("Июнль", 31); //2
+        number.put("Август", 31); //3
+        number.put("Сентябрь", 30);//4
+        System.out.println(number.values());
+        System.out.println(number.keySet());
+        checkingKey("Август", 31);//5
+        System.out.println(number.values());
+        System.out.println(number.keySet());
 
-        for (Map.Entry<String, Integer> month : numberOfDays.entrySet())
-            if (!month.getKey().equals(avgust.getMonth())) numberOfDays.put("Август", 31);
-            else if ((month.getKey().equals(avgust.getMonth()))
-                    && (month.getValue() == Collection.getNumberDays())) System.out.println("Исключение");
-            else numberOfDays.remove("Август", 31);
-        System.out.println(numberOfDays.values());
-
+    }
+    public static void checkingKey(String string, Integer integer) {
+        if (number.containsKey(string) && number.get(string).equals(integer)) {
+                throw new RuntimeException("Такой вариант уже существует.");
+        }
+        number.put(string, integer);
     }
 }
